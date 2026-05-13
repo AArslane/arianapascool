@@ -1,0 +1,29 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables (au cas où)
+.env
+.env.local
+
+# Build / dependencies (au cas où)
+node_modules/
+dist/
+build/
+
+# OS / system
+.Spotlight-V100
+.Trashes
+ehthumbs.db

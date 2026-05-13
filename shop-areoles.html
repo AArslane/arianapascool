@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galerie aréoles — ariana pascool</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,400&family=Caveat:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   BASE — variables & reset
+   (partagé avec arianapascool.html — TODO : extraire en styles.css commun)
+═══════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#faf5f0;
+  --cream-warm:#f4ebe0;
+  --rose-whisper:#f8dde3;
+  --rose-pale:#f0c4ce;
+  --rose-dust:#d99aa5;
+  --rose-deep:#8a4a56;
+  --ink:#2a1f22;
+  --ink-soft:#5c4850;
+  --gold:#b8956a;
+  --shadow:rgba(138,74,86,0.08);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);color:var(--ink);
+  font-family:'DM Sans',sans-serif;font-weight:300;
+  overflow-x:hidden;line-height:1.7;font-size:16px;
+}
+
+/* Grain overlay */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  opacity:0.4;mix-blend-mode:multiply;
+}
+
+::selection{background:var(--rose-pale);color:var(--ink)}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--rose-dust);border-radius:4px}
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:24px 40px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(250,245,240,0.85);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(42,31,34,0.06);
+  transition:padding 0.4s ease;
+}
+nav.scrolled{padding:16px 40px}
+.nav-logo{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:1.35rem;font-weight:400;color:var(--ink);
+  letter-spacing:0.02em;text-decoration:none;
+  display:flex;align-items:center;gap:10px;
+}
+.nav-logo-mark{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--rose-pale),var(--rose-dust));
+  position:relative;overflow:hidden;
+}
+.nav-logo-mark::after{
+  content:'';position:absolute;inset:30%;border-radius:50%;
+  background:var(--rose-deep);
+}
+.nav-links{display:flex;gap:40px;list-style:none;align-items:center}
+.nav-links a{
+  color:var(--ink-soft);text-decoration:none;font-size:0.82rem;
+  text-transform:uppercase;letter-spacing:0.18em;font-weight:400;
+  position:relative;padding:4px 0;transition:color 0.3s;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:1px;background:var(--rose-deep);
+  transition:width 0.3s ease;
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
+/* Lien page courante */
+.nav-links a.nav-active{color:var(--rose-deep);font-weight:500}
+.nav-links a.nav-active::after{width:100%}
+
+/* ═══════════════════════════════════════
+   SECTIONS — base
+═══════════════════════════════════════ */
+section{padding:100px 40px;position:relative;z-index:2}
+
+.section-tag{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:'DM Sans',sans-serif;font-size:0.8rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--rose-deep);margin-bottom:24px;font-weight:500;
+}
+.section-tag::before{content:'';width:30px;height:1px;background:var(--rose-deep)}
+
+.section-title{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:clamp(2.2rem,4.5vw,3.8rem);line-height:1.05;
+  letter-spacing:-0.02em;margin-bottom:24px;color:var(--ink);
+}
+.section-title em{font-style:italic;color:var(--rose-deep);font-weight:300}
+
+.section-subtitle{
+  font-size:1.1rem;color:var(--ink-soft);
+  max-width:560px;line-height:1.7;
+}
+
+/* ═══════════════════════════════════════
+   HERO COURT (~50vh)
+═══════════════════════════════════════ */
+.hero-short{
+  min-height:50vh;
+  padding:160px 40px 70px;
+  display:flex;align-items:flex-end;
+  background:var(--cream);
+  position:relative;overflow:hidden;
+}
+/* Dégradé décoratif subtil — cohérent avec index.html */
+.hero-short::before{
+  content:'';position:absolute;top:80px;right:-60px;
+  width:420px;height:420px;pointer-events:none;
+  background:radial-gradient(circle,var(--rose-whisper) 0%,transparent 70%);
+  opacity:0.55;
+}
+.hero-short-content{
+  position:relative;z-index:2;
+  max-width:800px;
+}
+.hero-short-tag{
+  font-family:'DM Sans',sans-serif;font-size:0.85rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--rose-deep);margin-bottom:28px;
+  display:flex;align-items:center;gap:14px;
+}
+.hero-short-tag::before{content:'';width:40px;height:1px;background:var(--rose-deep)}
+
+.hero-short-title{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:clamp(2.8rem,6vw,5rem);line-height:0.95;
+  color:var(--ink);margin-bottom:24px;letter-spacing:-0.02em;
+}
+.hero-short-title em{font-style:italic;color:var(--rose-deep);font-weight:300}
+
+.hero-short-desc{
+  font-size:1.1rem;line-height:1.8;color:var(--ink-soft);
+  max-width:520px;
+}
+
+/* ═══════════════════════════════════════
+   GALERIE — grille 3×3
+═══════════════════════════════════════ */
+.gallery-shop{background:var(--cream-warm)}
+
+.gallery-shop-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  max-width:1300px;margin:0 auto;
+}
+
+.gallery-shop-item{
+  aspect-ratio:4/5;
+  border-radius:6px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:opacity 0.35s ease, transform 0.5s cubic-bezier(0.19,1,0.22,1);
+}
+.gallery-shop-item:hover{
+  opacity:0.85;
+  transform:scale(1.02);
+}
+
+/* Placeholders — à remplacer par photos réelles */
+.gs-1{background:linear-gradient(135deg,#f8dde3,#f0c4ce)}
+.gs-2{background:linear-gradient(135deg,#f4ebe0,#e8d5c4)}
+.gs-3{background:linear-gradient(135deg,#f0c4ce,#d99aa5)}
+.gs-4{background:linear-gradient(135deg,#d99aa5,#c4948e)}
+.gs-5{background:linear-gradient(135deg,#faf5f0,#f4ebe0)}
+.gs-6{background:linear-gradient(135deg,#b8956a,#c9a68e)}
+.gs-7{background:linear-gradient(135deg,#f8dde3,#e0b4c0)}
+.gs-8{background:linear-gradient(135deg,#e8d5c4,#d4b5a0)}
+.gs-9{background:linear-gradient(135deg,#f0c4ce,#b8838f)}
+
+/* ═══════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════ */
+.contact{
+  background:linear-gradient(180deg,var(--cream-warm) 0%,var(--rose-whisper) 100%);
+  padding:140px 40px 100px;
+  position:relative;overflow:hidden;
+}
+.contact::before{
+  content:'';position:absolute;top:50%;right:-200px;transform:translateY(-50%);
+  width:500px;height:500px;border-radius:50%;
+  background:var(--rose-pale);opacity:0.3;filter:blur(80px);
+}
+.contact-wrapper{
+  max-width:1100px;margin:0 auto;
+  position:relative;z-index:2;
+}
+.contact-wrapper--single{max-width:680px}
+
+.contact-details{margin-top:40px;display:flex;flex-direction:column;gap:20px}
+.contact-item{display:flex;gap:16px;align-items:flex-start}
+.contact-item-icon{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--ink);color:var(--cream);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0;
+}
+.contact-item-label{
+  font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:4px;
+}
+.contact-item-value{
+  font-family:'Fraunces',serif;font-size:1.1rem;color:var(--ink);
+}
+.contact-item-link{
+  font-family:'Fraunces',serif;font-size:1.1rem;color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid rgba(42,31,34,0.2);
+  padding-bottom:2px;display:inline-block;
+  transition:color 0.3s,border-color 0.3s;
+}
+.contact-item-link:hover{color:var(--rose-deep);border-color:var(--rose-deep)}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer{
+  background:var(--ink);color:var(--cream);
+  padding:80px 40px 40px;position:relative;overflow:hidden;
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;
+  max-width:1300px;margin:0 auto 60px;
+}
+.footer-brand{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:2rem;margin-bottom:20px;
+}
+.footer-tagline{
+  color:rgba(250,245,240,0.6);max-width:400px;line-height:1.7;
+}
+.footer-title{
+  font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;
+  margin-bottom:24px;color:var(--rose-dust);
+}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-links a{
+  color:rgba(250,245,240,0.6);text-decoration:none;
+  font-size:0.95rem;transition:color 0.3s;
+}
+.footer-links a:hover{color:var(--cream)}
+.footer-bottom{
+  border-top:1px solid rgba(250,245,240,0.1);padding-top:30px;
+  max-width:1300px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:0.85rem;color:rgba(250,245,240,0.4);
+  flex-wrap:wrap;gap:16px;
+}
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media(max-width:900px){
+  nav{padding:16px 20px}
+  .nav-links{display:none}
+  .hero-short{padding:120px 20px 60px;min-height:40vh}
+  section{padding:80px 20px}
+  .gallery-shop-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .footer-grid{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:600px){
+  .gallery-shop-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="arianapascool.html" class="nav-logo">
+    <span class="nav-logo-mark"></span>
+    ariana pascool
+  </a>
+  <ul class="nav-links">
+    <li><a href="arianapascool.html">Reconstruction d'aréoles</a></li>
+    <li><a href="#" class="nav-active">Galerie aréoles</a></li>
+    <li><a href="artistique.html">Tatouages artistiques</a></li>
+    <li><a href="arianapascool.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO COURT -->
+<section class="hero-short">
+  <div class="hero-short-content">
+    <p class="hero-short-tag">Galerie — Paramédical</p>
+    <h1 class="hero-short-title">Galerie <em>aréoles</em></h1>
+    <p class="hero-short-desc">Une sélection de réalisations en reconstruction pigmentaire 3D.</p>
+  </div>
+</section>
+
+<!-- GALERIE — 3×3, 9 placeholders -->
+<section class="gallery-shop">
+  <div class="gallery-shop-grid">
+
+    <!-- À remplacer par photo réalisation ariana -->
+    <div class="gallery-shop-item gs-1"></div>
+
+    <!-- À remplacer par photo réalisation ariana -->
+    <div class="gallery-shop-item gs-2"></div>
+
+    <!-- À remplacer par photo réalisation ariana -->
+    <div class="gallery-shop-item gs-3"></div>
+
+    <!-- À remplacer par photo réalisation ariana -->
+    <div class="gallery-shop-item gs-4"></div>
+
+    <!-- À remplacer par photo réalisation ariana -->
+    <div class="gallery-shop-item gs-5"></div>
+
+    <!-- À remplacer par photo réalisation ariana -->
+    <div class="gallery-shop-item gs-6"></div>
+
+    <!-- À remplacer par photo réalisation ariana -->
+    <div class="gallery-shop-item gs-7"></div>
+
+    <!-- À remplacer par photo réalisation ariana -->
+    <div class="gallery-shop-item gs-8"></div>
+
+    <!-- À remplacer par photo réalisation ariana -->
+    <div class="gallery-shop-item gs-9"></div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-wrapper contact-wrapper--single">
+    <div>
+      <p class="section-tag">Contact</p>
+      <h2 class="section-title">Prenons le temps<br>d'en <em>parler</em>.</h2>
+      <p class="section-subtitle">
+        Pour échanger sur un projet de reconstruction, écrivez-moi directement.
+      </p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-item-icon">✉</div>
+          <div>
+            <p class="contact-item-label">Email</p>
+            <a href="mailto:ariana@arianapascool.com" class="contact-item-value contact-item-link">ariana@arianapascool.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">◎</div>
+          <div>
+            <p class="contact-item-label">Instagram</p>
+            <a href="https://instagram.com/arianapascool" target="_blank" rel="noopener" class="contact-item-value contact-item-link">@arianapascool</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">◉</div>
+          <div>
+            <p class="contact-item-label">Studio</p>
+            <p class="contact-item-value">Toulouse, France</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <p class="footer-brand">ariana pascool</p>
+      <p class="footer-tagline">
+        Tatouage paramédical et artistique. Une approche sensible de la reconstruction, par le geste et la patience.
+      </p>
+    </div>
+    <div>
+      <p class="footer-title">Navigation</p>
+      <ul class="footer-links">
+        <li><a href="arianapascool.html#about">À propos</a></li>
+        <li><a href="arianapascool.html#services">Prestations</a></li>
+        <li><a href="arianapascool.html#process">Parcours</a></li>
+        <li><a href="#">Galerie aréoles</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-title">Suivre</p>
+      <ul class="footer-links">
+        <li><a href="https://instagram.com/arianapascool" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Mentions légales</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 ariana pascool. Tous droits réservés.</p>
+    <p>Toulouse, France</p>
+  </div>
+</footer>
+
+<script>
+// Nav scrolled
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Smooth scroll (liens internes uniquement)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
+});
+
+// Fade-in des sections (hors hero court)
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, {threshold: 0.1});
+
+document.querySelectorAll('section:not(.hero-short)').forEach(section => {
+  section.style.opacity = '0';
+  section.style.transform = 'translateY(40px)';
+  section.style.transition = 'opacity 1s cubic-bezier(0.19,1,0.22,1), transform 1s cubic-bezier(0.19,1,0.22,1)';
+  observer.observe(section);
+});
+</script>
+
+</body>
+</html>
