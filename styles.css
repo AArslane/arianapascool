@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Galerie aréoles — ariana pascool</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,400&family=Caveat:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
 /* ═══════════════════════════════════════
-   BASE — variables & reset
-   (partagé avec index.html — TODO : extraire en styles.css commun)
+   RESET + VARIABLES
 ═══════════════════════════════════════ */
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -26,13 +15,9 @@
   --shadow:rgba(138,74,86,0.08);
 }
 html{scroll-behavior:smooth}
-body{
-  background:var(--cream);color:var(--ink);
-  font-family:'DM Sans',sans-serif;font-weight:300;
-  overflow-x:hidden;line-height:1.7;font-size:16px;
-}
+body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;line-height:1.7;font-size:16px}
 
-/* Grain overlay */
+/* GRAIN OVERLAY */
 body::before{
   content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
@@ -84,7 +69,6 @@ nav.scrolled{padding:16px 40px}
 }
 .nav-links a:hover{color:var(--ink)}
 .nav-links a:hover::after{width:100%}
-/* Lien page courante */
 .nav-links a.nav-active{color:var(--rose-deep);font-weight:500}
 .nav-links a.nav-active::after{width:100%}
 
@@ -114,7 +98,19 @@ section{padding:100px 40px;position:relative;z-index:2}
 }
 
 /* ═══════════════════════════════════════
-   HERO COURT (~50vh)
+   ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+/* ═══════════════════════════════════════
+   HERO COURT (~50vh) — pages galeries
 ═══════════════════════════════════════ */
 .hero-short{
   min-height:50vh;
@@ -123,7 +119,6 @@ section{padding:100px 40px;position:relative;z-index:2}
   background:var(--cream);
   position:relative;overflow:hidden;
 }
-/* Dégradé décoratif subtil — cohérent avec index.html */
 .hero-short::before{
   content:'';position:absolute;top:80px;right:-60px;
   width:420px;height:420px;pointer-events:none;
@@ -141,53 +136,39 @@ section{padding:100px 40px;position:relative;z-index:2}
   display:flex;align-items:center;gap:14px;
 }
 .hero-short-tag::before{content:'';width:40px;height:1px;background:var(--rose-deep)}
-
 .hero-short-title{
   font-family:'Fraunces',serif;font-weight:400;
   font-size:clamp(2.8rem,6vw,5rem);line-height:0.95;
   color:var(--ink);margin-bottom:24px;letter-spacing:-0.02em;
 }
 .hero-short-title em{font-style:italic;color:var(--rose-deep);font-weight:300}
-
 .hero-short-desc{
   font-size:1.1rem;line-height:1.8;color:var(--ink-soft);
   max-width:520px;
 }
 
 /* ═══════════════════════════════════════
-   GALERIE — grille 3×3
+   GALERIE PAGE — grille 3×3
+   (aréoles & artistique)
 ═══════════════════════════════════════ */
-.gallery-shop{background:var(--cream-warm)}
-
-.gallery-shop-grid{
+.gallery-page{background:var(--cream-warm)}
+.gallery-page-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:16px;
   max-width:1300px;margin:0 auto;
 }
-
-.gallery-shop-item{
+.gallery-page-item{
   aspect-ratio:4/5;
   border-radius:6px;
   overflow:hidden;
   cursor:pointer;
   transition:opacity 0.35s ease, transform 0.5s cubic-bezier(0.19,1,0.22,1);
 }
-.gallery-shop-item:hover{
+.gallery-page-item:hover{
   opacity:0.85;
   transform:scale(1.02);
 }
-
-/* Placeholders — à remplacer par photos réelles */
-.gs-1{background:linear-gradient(135deg,#f8dde3,#f0c4ce)}
-.gs-2{background:linear-gradient(135deg,#f4ebe0,#e8d5c4)}
-.gs-3{background:linear-gradient(135deg,#f0c4ce,#d99aa5)}
-.gs-4{background:linear-gradient(135deg,#d99aa5,#c4948e)}
-.gs-5{background:linear-gradient(135deg,#faf5f0,#f4ebe0)}
-.gs-6{background:linear-gradient(135deg,#b8956a,#c9a68e)}
-.gs-7{background:linear-gradient(135deg,#f8dde3,#e0b4c0)}
-.gs-8{background:linear-gradient(135deg,#e8d5c4,#d4b5a0)}
-.gs-9{background:linear-gradient(135deg,#f0c4ce,#b8838f)}
 
 /* ═══════════════════════════════════════
    CONTACT
@@ -207,7 +188,6 @@ section{padding:100px 40px;position:relative;z-index:2}
   position:relative;z-index:2;
 }
 .contact-wrapper--single{max-width:680px}
-
 .contact-details{margin-top:40px;display:flex;flex-direction:column;gap:20px}
 .contact-item{display:flex;gap:16px;align-items:flex-start}
 .contact-item-icon{
@@ -220,9 +200,7 @@ section{padding:100px 40px;position:relative;z-index:2}
   font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;
   color:var(--ink-soft);margin-bottom:4px;
 }
-.contact-item-value{
-  font-family:'Fraunces',serif;font-size:1.1rem;color:var(--ink);
-}
+.contact-item-value{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--ink)}
 .contact-item-link{
   font-family:'Fraunces',serif;font-size:1.1rem;color:var(--ink);
   text-decoration:none;
@@ -237,7 +215,8 @@ section{padding:100px 40px;position:relative;z-index:2}
 ═══════════════════════════════════════ */
 footer{
   background:var(--ink);color:var(--cream);
-  padding:80px 40px 40px;position:relative;overflow:hidden;
+  padding:80px 40px 40px;
+  position:relative;overflow:hidden;
 }
 .footer-grid{
   display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;
@@ -247,9 +226,7 @@ footer{
   font-family:'Fraunces',serif;font-style:italic;
   font-size:2rem;margin-bottom:20px;
 }
-.footer-tagline{
-  color:rgba(250,245,240,0.6);max-width:400px;line-height:1.7;
-}
+.footer-tagline{color:rgba(250,245,240,0.6);max-width:400px;line-height:1.7}
 .footer-title{
   font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;
   margin-bottom:24px;color:var(--rose-dust);
@@ -269,191 +246,16 @@ footer{
 }
 
 /* ═══════════════════════════════════════
-   ANIMATIONS
-═══════════════════════════════════════ */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* ═══════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════ */
 @media(max-width:900px){
   nav{padding:16px 20px}
   .nav-links{display:none}
-  .hero-short{padding:120px 20px 60px;min-height:40vh}
   section{padding:80px 20px}
-  .gallery-shop-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .hero-short{padding:120px 20px 60px;min-height:40vh}
+  .gallery-page-grid{grid-template-columns:1fr 1fr;gap:12px}
   .footer-grid{grid-template-columns:1fr;gap:40px}
 }
 @media(max-width:600px){
-  .gallery-shop-grid{grid-template-columns:1fr}
+  .gallery-page-grid{grid-template-columns:1fr}
 }
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav id="nav">
-  <a href="index.html" class="nav-logo">
-    <span class="nav-logo-mark"></span>
-    ariana pascool
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Reconstruction d'aréoles</a></li>
-    <li><a href="#" class="nav-active">Galerie aréoles</a></li>
-    <li><a href="artistique.html">Tatouages artistiques</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- HERO COURT -->
-<section class="hero-short">
-  <div class="hero-short-content">
-    <p class="hero-short-tag">Galerie — Paramédical</p>
-    <h1 class="hero-short-title">Galerie <em>aréoles</em></h1>
-    <p class="hero-short-desc">Une sélection de réalisations en reconstruction pigmentaire 3D.</p>
-  </div>
-</section>
-
-<!-- GALERIE — 3×3, 9 placeholders -->
-<section class="gallery-shop">
-  <div class="gallery-shop-grid">
-
-    <!-- À remplacer par photo réalisation ariana -->
-    <div class="gallery-shop-item gs-1"></div>
-
-    <!-- À remplacer par photo réalisation ariana -->
-    <div class="gallery-shop-item gs-2"></div>
-
-    <!-- À remplacer par photo réalisation ariana -->
-    <div class="gallery-shop-item gs-3"></div>
-
-    <!-- À remplacer par photo réalisation ariana -->
-    <div class="gallery-shop-item gs-4"></div>
-
-    <!-- À remplacer par photo réalisation ariana -->
-    <div class="gallery-shop-item gs-5"></div>
-
-    <!-- À remplacer par photo réalisation ariana -->
-    <div class="gallery-shop-item gs-6"></div>
-
-    <!-- À remplacer par photo réalisation ariana -->
-    <div class="gallery-shop-item gs-7"></div>
-
-    <!-- À remplacer par photo réalisation ariana -->
-    <div class="gallery-shop-item gs-8"></div>
-
-    <!-- À remplacer par photo réalisation ariana -->
-    <div class="gallery-shop-item gs-9"></div>
-
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="contact-wrapper contact-wrapper--single">
-    <div>
-      <p class="section-tag">Contact</p>
-      <h2 class="section-title">Prenons le temps<br>d'en <em>parler</em>.</h2>
-      <p class="section-subtitle">
-        Pour échanger sur un projet de reconstruction, écrivez-moi directement.
-      </p>
-      <div class="contact-details">
-        <div class="contact-item">
-          <div class="contact-item-icon">✉</div>
-          <div>
-            <p class="contact-item-label">Email</p>
-            <a href="mailto:ariana@arianapascool.com" class="contact-item-value contact-item-link">ariana@arianapascool.com</a>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">◎</div>
-          <div>
-            <p class="contact-item-label">Instagram</p>
-            <a href="https://instagram.com/arianapascool" target="_blank" rel="noopener" class="contact-item-value contact-item-link">@arianapascool</a>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon">◉</div>
-          <div>
-            <p class="contact-item-label">Studio</p>
-            <p class="contact-item-value">Toulouse, France</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div>
-      <p class="footer-brand">ariana pascool</p>
-      <p class="footer-tagline">
-        Tatouage paramédical et artistique. Une approche sensible de la reconstruction, par le geste et la patience.
-      </p>
-    </div>
-    <div>
-      <p class="footer-title">Navigation</p>
-      <ul class="footer-links">
-        <li><a href="index.html#about">À propos</a></li>
-        <li><a href="index.html#services">Prestations</a></li>
-        <li><a href="index.html#process">Parcours</a></li>
-        <li><a href="#">Galerie aréoles</a></li>
-      </ul>
-    </div>
-    <div>
-      <p class="footer-title">Suivre</p>
-      <ul class="footer-links">
-        <li><a href="https://instagram.com/arianapascool" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#">Mentions légales</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2026 ariana pascool. Tous droits réservés.</p>
-    <p>Toulouse, France</p>
-  </div>
-</footer>
-
-<script>
-// Nav scrolled
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
-});
-
-// Smooth scroll (liens internes uniquement)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({behavior:'smooth', block:'start'});
-    }
-  });
-});
-
-// Fade-in des sections (hors hero court)
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, {threshold: 0.1});
-
-document.querySelectorAll('section:not(.hero-short)').forEach(section => {
-  section.style.opacity = '0';
-  section.style.transform = 'translateY(40px)';
-  section.style.transition = 'opacity 1s cubic-bezier(0.19,1,0.22,1), transform 1s cubic-bezier(0.19,1,0.22,1)';
-  observer.observe(section);
-});
-</script>
-
-</body>
-</html>
