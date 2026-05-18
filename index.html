@@ -68,9 +68,10 @@ body::before{
    HERO
 ═══════════════════════════════════════ */
 .hero{
-  min-height:100vh;padding:160px 40px 80px;
+  height:100vh;padding:120px 40px 60px;
   position:relative;overflow:hidden;
-  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+  display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr;gap:60px;align-items:center;
+  box-sizing:border-box;
 }
 
 /* Décoration hero */
@@ -138,7 +139,7 @@ body::before{
 /* Hero image */
 .hero-right{
   position:relative;z-index:2;
-  aspect-ratio:4/5;
+  align-self:stretch;
   opacity:0;animation:fadeIn 1.2s 0.6s forwards;
 }
 .hero-image{
@@ -214,158 +215,6 @@ section{padding:140px 40px;position:relative;z-index:2}
   color:var(--rose-deep);margin-top:20px;
 }
 
-/* ═══════════════════════════════════════
-   SERVICES (Tatouage paramédical + artistique)
-═══════════════════════════════════════ */
-.services{background:var(--cream);padding-bottom:60px}
-.services-header{
-  display:flex;justify-content:space-between;align-items:flex-end;
-  margin-bottom:80px;gap:60px;flex-wrap:wrap;
-}
-.services-header > div{max-width:600px}
-
-.services-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:40px;
-  max-width:1300px;margin:0 auto;
-}
-
-.service-card{
-  background:white;border-radius:8px;overflow:hidden;
-  box-shadow:0 20px 40px rgba(138,74,86,0.06);
-  transition:all 0.5s cubic-bezier(0.19,1,0.22,1);
-  position:relative;
-}
-.service-card:hover{
-  transform:translateY(-12px);
-  box-shadow:0 40px 80px rgba(138,74,86,0.15);
-}
-.service-image{
-  aspect-ratio:4/3;position:relative;overflow:hidden;
-}
-.service-image-1{
-  background:linear-gradient(135deg,#e8d0c4,#d9a99a,#b8756c);
-}
-.service-image-2{
-  background:linear-gradient(135deg,#2a2124,#3d2e35,#2a1f22);
-}
-.service-image-label{
-  position:absolute;bottom:20px;left:20px;
-  font-family:'Caveat',cursive;font-size:1.3rem;
-  color:rgba(255,255,255,0.85);
-}
-.service-number{
-  position:absolute;top:20px;right:20px;
-  font-family:'Fraunces',serif;font-style:italic;
-  font-size:1.5rem;color:rgba(255,255,255,0.8);
-}
-.service-content{padding:40px}
-.service-title{
-  font-family:'Fraunces',serif;font-size:1.8rem;font-weight:400;
-  margin-bottom:16px;color:var(--ink);
-}
-.service-title em{font-style:italic;color:var(--rose-deep)}
-.service-desc{color:var(--ink-soft);line-height:1.7;margin-bottom:24px}
-.service-link{
-  color:var(--ink);text-decoration:none;font-size:0.85rem;
-  letter-spacing:0.12em;text-transform:uppercase;
-  border-bottom:1px solid var(--ink);padding-bottom:3px;
-  display:inline-flex;align-items:center;gap:8px;
-  transition:color 0.3s,gap 0.3s;
-}
-.service-link:hover{color:var(--rose-deep);gap:12px}
-.service-link::after{content:'→'}
-
-/* ═══════════════════════════════════════
-   PROCESS
-═══════════════════════════════════════ */
-.process{background:var(--ink);color:var(--cream);overflow:hidden;position:relative}
-.process::before{
-  content:'';position:absolute;top:0;right:0;
-  width:600px;height:600px;
-  background:radial-gradient(circle,rgba(217,154,165,0.15) 0%,transparent 70%);
-  pointer-events:none;
-}
-.process .section-tag{color:var(--rose-dust)}
-.process .section-tag::before{background:var(--accent-yellow)}
-.process .section-title{color:var(--cream)}
-.process .section-title em{color:var(--rose-dust)}
-
-.process-header{max-width:700px;margin-bottom:80px;position:relative;z-index:2}
-.process-header .section-subtitle{color:rgba(250,245,240,0.7)}
-
-.process-steps{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:30px;
-  max-width:1300px;margin:0 auto;position:relative;z-index:2;
-}
-.step{
-  padding:40px 30px;border-top:1px solid rgba(250,245,240,0.15);
-  transition:border-color 0.3s;position:relative;
-}
-.step:hover{border-top-color:var(--rose-dust)}
-.step-number{
-  font-family:'Fraunces',serif;font-style:italic;
-  font-size:3rem;font-weight:300;color:var(--accent-yellow);
-  margin-bottom:20px;line-height:1;
-}
-.step-title{
-  font-family:'Fraunces',serif;font-size:1.25rem;font-weight:400;
-  margin-bottom:14px;
-}
-.step-desc{
-  color:rgba(250,245,240,0.6);font-size:0.92rem;line-height:1.7;
-}
-
-/* ═══════════════════════════════════════
-   GALLERY
-═══════════════════════════════════════ */
-.gallery{background:var(--cream-warm)}
-.gallery-header{
-  display:flex;justify-content:space-between;align-items:flex-end;
-  margin-bottom:60px;gap:40px;max-width:1300px;margin-left:auto;margin-right:auto;
-  flex-wrap:wrap;
-}
-.gallery-filter{
-  display:flex;gap:8px;
-}
-.filter-btn{
-  padding:10px 22px;border-radius:50px;
-  background:transparent;border:1px solid rgba(42,31,34,0.2);
-  color:var(--ink-soft);font-family:'DM Sans',sans-serif;
-  font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;
-  cursor:pointer;transition:all 0.3s;
-}
-.filter-btn:hover,.filter-btn.active{
-  background:var(--ink);color:var(--cream);border-color:var(--ink);
-}
-
-.gallery-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
-  max-width:1300px;margin:0 auto;
-}
-.gallery-item{
-  aspect-ratio:3/4;border-radius:6px;overflow:hidden;
-  position:relative;cursor:pointer;
-  transition:transform 0.5s cubic-bezier(0.19,1,0.22,1);
-}
-.gallery-item:nth-child(1){background:linear-gradient(135deg,#e8d5c4,#c9a68e)}
-.gallery-item:nth-child(2){background:linear-gradient(135deg,#f0c4ce,#b8838f);grid-row:span 2;aspect-ratio:auto}
-.gallery-item:nth-child(3){background:linear-gradient(135deg,#d4b5a0,#a88670)}
-.gallery-item:nth-child(4){background:linear-gradient(135deg,#3d2e35,#2a1f22)}
-.gallery-item:nth-child(5){background:linear-gradient(135deg,#e8c9b5,#c4a088)}
-
-.gallery-item:hover{transform:scale(1.02)}
-.gallery-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(42,31,34,0.7) 0%,transparent 50%);
-  display:flex;flex-direction:column;justify-content:flex-end;
-  padding:24px;opacity:0;transition:opacity 0.3s;
-}
-.gallery-item:hover .gallery-overlay{opacity:1}
-.gallery-label{color:white;font-family:'Caveat',cursive;font-size:1.3rem}
-.gallery-category{
-  color:var(--rose-dust);font-size:0.75rem;letter-spacing:0.15em;
-  text-transform:uppercase;margin-bottom:6px;
-}
 
 /* ═══════════════════════════════════════
    CONTACT
@@ -465,41 +314,130 @@ footer{
 }
 
 /* ═══════════════════════════════════════
+   UNIVERS
+═══════════════════════════════════════ */
+.univers{background:var(--cream);padding:140px 0 0}
+.univers-header{max-width:700px;margin:0 auto 100px;text-align:center;padding:0 40px}
+.univers-block{
+  display:grid;grid-template-columns:1fr 1fr;
+  max-width:100%;min-height:520px;
+}
+.univers-visual{position:relative;overflow:hidden;min-height:520px;order:1}
+.univers-text{
+  padding:80px 100px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.univers-tag{
+  font-family:'DM Sans',sans-serif;font-size:0.8rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--rose-deep);margin-bottom:20px;font-weight:500;
+  display:flex;align-items:center;gap:12px;
+}
+.univers-tag::before{content:'';width:30px;height:1px;background:var(--rose-deep)}
+.univers-title{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.1;
+  letter-spacing:-0.02em;margin-bottom:20px;color:var(--ink);
+}
+.univers-title em{font-style:italic;color:var(--rose-deep);font-weight:300}
+.univers-desc{
+  font-size:1rem;color:var(--ink-soft);line-height:1.8;
+  max-width:440px;margin-bottom:32px;
+}
+.univers-link{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'DM Sans',sans-serif;font-size:0.85rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;
+  border-bottom:1px solid var(--ink);padding-bottom:3px;
+  align-self:flex-start;transition:color 0.3s,gap 0.3s;
+}
+.univers-link:hover{color:var(--rose-deep);gap:14px}
+.univers-link::after{content:'→'}
+.uv-1{background:linear-gradient(135deg,#e8d0c4,#d9a99a,#b8756c)}
+.uv-2{background:linear-gradient(135deg,#f8dde3,#f0c4ce,#d99aa5)}
+.uv-3{background:linear-gradient(135deg,#2a2124,#3d2e35,#4a3040)}
+
+/* ═══════════════════════════════════════
+   GALERIE MIXTE
+═══════════════════════════════════════ */
+.galerie-mixte{background:var(--cream-warm)}
+.galerie-mixte-header{max-width:700px;margin:0 auto 60px}
+.galerie-mixte-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  max-width:1300px;margin:0 auto;
+}
+.galerie-mixte-item{
+  aspect-ratio:4/5;border-radius:6px;overflow:hidden;
+  cursor:pointer;position:relative;
+  transition:opacity 0.35s ease,transform 0.5s cubic-bezier(0.19,1,0.22,1);
+}
+.galerie-mixte-item:hover{opacity:0.85;transform:scale(1.02)}
+.galerie-mixte-label{
+  position:absolute;bottom:14px;right:14px;
+  font-family:'DM Sans',sans-serif;font-size:0.7rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(255,255,255,0.9);
+  background:rgba(42,31,34,0.45);
+  padding:4px 10px;border-radius:20px;
+  backdrop-filter:blur(4px);
+}
+.gm-1{background:linear-gradient(135deg,#e8d0c4,#d9a99a)}
+.gm-2{background:linear-gradient(135deg,#f8dde3,#f0c4ce)}
+.gm-3{background:linear-gradient(135deg,#2a2124,#3d2e35)}
+.gm-4{background:linear-gradient(135deg,#f0c4ce,#d99aa5)}
+.gm-5{background:linear-gradient(135deg,#e8d5c4,#c4948e)}
+.gm-6{background:linear-gradient(135deg,#3d2e35,#2a1f22)}
+
+/* ═══════════════════════════════════════
+   AVIS
+═══════════════════════════════════════ */
+.avis{background:var(--cream)}
+.avis-header{max-width:700px;margin:0 auto 60px}
+.avis-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  max-width:1300px;margin:0 auto;
+}
+.avis-card{
+  background:var(--cream-warm);border-radius:6px;
+  padding:40px 32px;border:1px solid rgba(42,31,34,0.06);
+  transition:box-shadow 0.3s;
+}
+.avis-card:hover{box-shadow:0 20px 40px var(--shadow)}
+.avis-quote{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+  font-size:1.1rem;line-height:1.7;color:var(--ink);
+  margin-bottom:28px;
+}
+.avis-quote::before{
+  content:'"';font-size:2rem;color:var(--rose-dust);
+  line-height:0;vertical-align:-0.4em;margin-right:4px;
+}
+.avis-author{
+  font-family:'DM Sans',sans-serif;font-size:0.8rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--ink-soft);font-weight:500;
+}
+
+/* ═══════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════ */
 @media(max-width:900px){
   nav{padding:16px 20px}
-.hero{grid-template-columns:1fr;gap:40px;padding:120px 20px 60px;min-height:auto}
-  .hero-right{aspect-ratio:4/4}
+  .hero{grid-template-columns:1fr;gap:40px;padding:120px 20px 60px;height:auto;min-height:100vh}
+  .hero-right{height:300px;align-self:auto}
   section{padding:80px 20px}
-  .about-grid,.services-grid,.contact-wrapper,.footer-grid{grid-template-columns:1fr;gap:40px}
-  .process-steps{grid-template-columns:1fr 1fr;gap:20px}
-  .gallery-grid{grid-template-columns:1fr 1fr}
-  .gallery-item:nth-child(2){grid-row:auto;aspect-ratio:3/4}
-  .services-header,.gallery-header{flex-direction:column;align-items:flex-start}
+  .about-grid,.footer-grid{grid-template-columns:1fr;gap:40px}
+  .univers-block{grid-template-columns:1fr;min-height:auto}
+  .univers-visual{order:-1}
+  .univers-visual{min-height:300px}
+  .univers-text{padding:50px 40px}
+  .galerie-mixte-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .avis-grid{grid-template-columns:1fr}
 }
 @media(max-width:600px){
-  .process-steps,.gallery-grid{grid-template-columns:1fr}
+  .galerie-mixte-grid{grid-template-columns:1fr}
 }
-
-/* ═══════════════════════════════════════
-   OVERRIDES — page paramédical
-═══════════════════════════════════════ */
-
-/* Services — carte unique mise en avant */
-.services-grid{grid-template-columns:1fr}
-.service-card--featured{max-width:860px;margin:0 auto}
-.service-card--featured .service-image{aspect-ratio:16/6}
-.service-card--featured .service-content{padding:60px}
-.service-card--featured .service-title{font-size:2.5rem;margin-bottom:20px}
-.service-card--featured .service-desc{font-size:1.05rem;max-width:620px;margin-bottom:32px}
-@media(max-width:900px){
-  .service-card--featured .service-content{padding:32px}
-  .service-card--featured .service-title{font-size:1.8rem}
-}
-
-/* Gallery — correction nth-child après suppression item artistique */
-.gallery-item:nth-child(4){background:linear-gradient(135deg,#e8c9b5,#c4a088)}
 
 /* Contact — colonne unique */
 .contact-wrapper--single{grid-template-columns:1fr;max-width:680px}
@@ -535,17 +473,18 @@ footer{
 </div>
 
 <!-- HERO -->
+<!-- HERO - TEXTES PROVISOIRES A REMPLACER -->
 <section class="hero">
   <div class="hero-deco-top"></div>
   <div class="hero-deco-bottom"></div>
 
   <div class="hero-left">
-    <p class="hero-number">Est. 2024 — Tatoueuse paramédicale</p>
+    <p class="hero-number">Tatoueuse — Toulouse</p>
     <h1 class="hero-title">
-      L'art de la <em>reconstruction</em> après <span class="accent">le silence</span>.
+      [TITRE PROVISOIRE — <em>présentation d'ariana</em>, à remplacer]
     </h1>
     <p class="hero-desc">
-      Redonner corps, lumière et confiance. Une technique douce et précise au service de celles qui renaissent après un cancer du sein.
+      [TEXTE PROVISOIRE — présentation courte d'ariana et de son approche, à remplacer]
     </p>
     <div class="hero-actions">
       <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Réserver une consultation</button>
@@ -577,103 +516,78 @@ footer{
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="services" id="services">
-  <div class="services-header">
-    <div>
-      <p class="section-tag">02 — Prestations</p>
-      <h2 class="section-title">Reconstruire avec <em>délicatesse et précision</em>.</h2>
-    </div>
-    <p class="section-subtitle">
-      Un savoir-faire double : la précision médicale du tatouage paramédical, et la liberté créative du tatouage artistique sur-mesure.
-    </p>
+<!-- UNIVERS - TEXTES PROVISOIRES A REMPLACER -->
+<section class="univers">
+  <div class="univers-header">
+    <p class="section-tag">Prestations</p>
+    <h2 class="section-title">Un savoir-faire <em>double</em>.</h2>
   </div>
 
-  <div class="services-grid">
-    <article class="service-card service-card--featured">
-      <div class="service-image service-image-1">
-        <span class="service-number">01</span>
-        <span class="service-image-label">tatouage paramédical</span>
-      </div>
-      <div class="service-content">
-        <h3 class="service-title">Tatouage 3D <em>d'aréole mammaire</em></h3>
-        <p class="service-desc">
-          Une technique pigmentaire en trompe-l'œil qui redonne au sein reconstruit son aréole et son mamelon en effet 3D. Pour les femmes ayant eu une reconstruction mammaire.
-        </p>
-        <a href="#contact" class="service-link">Prendre contact</a>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section class="process" id="process">
-  <div class="process-header">
-    <p class="section-tag">03 — Parcours</p>
-    <h2 class="section-title">De la première rencontre<br>au <em>résultat final</em>.</h2>
-    <p class="section-subtitle">
-      Un parcours en quatre étapes, pensé pour respecter votre rythme, vos émotions et votre peau.
-    </p>
+  <div class="univers-block">
+    <div class="univers-visual uv-1"></div>
+    <div class="univers-text">
+      <p class="univers-tag">Paramédical</p>
+      <h3 class="univers-title">Reconstruction <em>mammaire</em></h3>
+      <p class="univers-desc">[TEXTE PROVISOIRE — reconstruction 3D de l'aréole et du mamelon après chirurgie mammaire. À remplacer.]</p>
+      <a href="reconstruction-mammaire.html" class="univers-link">Découvrir</a>
+    </div>
   </div>
 
-  <div class="process-steps">
-    <div class="step">
-      <div class="step-number">01</div>
-      <h3 class="step-title">Consultation</h3>
-      <p class="step-desc">Un premier échange confidentiel pour comprendre votre parcours, vos attentes et définir la technique adaptée.</p>
+  <div class="univers-block">
+    <div class="univers-visual uv-2"></div>
+    <div class="univers-text">
+      <p class="univers-tag">Esthétique</p>
+      <h3 class="univers-title">Shop <em>aréoles</em></h3>
+      <p class="univers-desc">[TEXTE PROVISOIRE — aréole esthétique sur-mesure sur peau saine. À remplacer.]</p>
+      <a href="shop-areoles.html" class="univers-link">Découvrir</a>
     </div>
-    <div class="step">
-      <div class="step-number">02</div>
-      <h3 class="step-title">Conception</h3>
-      <p class="step-desc">Étude des couleurs, du relief, des dimensions. Chaque projet est unique et pensé pour votre peau.</p>
-    </div>
-    <div class="step">
-      <div class="step-number">03</div>
-      <h3 class="step-title">Séance</h3>
-      <p class="step-desc">Dans un environnement calme et stérile, la séance dure entre 1 et 3 heures selon la complexité du projet.</p>
-    </div>
-    <div class="step">
-      <div class="step-number">04</div>
-      <h3 class="step-title">Suivi</h3>
-      <p class="step-desc">Une retouche est comprise 4 à 6 semaines après la séance initiale pour garantir un résultat durable.</p>
+  </div>
+
+  <div class="univers-block">
+    <div class="univers-visual uv-3"></div>
+    <div class="univers-text">
+      <p class="univers-tag">Artistique</p>
+      <h3 class="univers-title">Tatouages <em>artistiques</em></h3>
+      <p class="univers-desc">[TEXTE PROVISOIRE — tatouage artistique sur-mesure, liberté créative. À remplacer.]</p>
+      <a href="artistique.html" class="univers-link">Découvrir</a>
     </div>
   </div>
 </section>
 
-<!-- GALLERY -->
-<section class="gallery" id="gallery">
-  <div class="gallery-header">
-    <div>
-      <p class="section-tag">04 — Galerie</p>
-      <h2 class="section-title">Réalisations <em>récentes</em>.</h2>
-    </div>
+<!-- GALERIE MIXTE - melanger photos des 3 activites, a remplacer -->
+<section class="galerie-mixte">
+  <div class="galerie-mixte-header">
+    <p class="section-tag">Réalisations</p>
+    <h2 class="section-title">Quelques <em>réalisations</em>.</h2>
   </div>
+  <div class="galerie-mixte-grid">
+    <div class="galerie-mixte-item gm-1"><span class="galerie-mixte-label">Reconstruction</span></div>
+    <div class="galerie-mixte-item gm-2"><span class="galerie-mixte-label">Shop aréoles</span></div>
+    <div class="galerie-mixte-item gm-3"><span class="galerie-mixte-label">Artistique</span></div>
+    <div class="galerie-mixte-item gm-4"><span class="galerie-mixte-label">Reconstruction</span></div>
+    <div class="galerie-mixte-item gm-5"><span class="galerie-mixte-label">Shop aréoles</span></div>
+    <div class="galerie-mixte-item gm-6"><span class="galerie-mixte-label">Artistique</span></div>
+  </div>
+</section>
 
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <div class="gallery-overlay">
-        <p class="gallery-category">Paramédical</p>
-        <p class="gallery-label">Reconstruction 3D</p>
-      </div>
+<!-- AVIS PROVISOIRES A REMPLACER -->
+<section class="avis">
+  <div class="avis-header">
+    <p class="section-tag">Témoignages</p>
+    <h2 class="section-title">Ce qu'elles <em>disent</em>.</h2>
+  </div>
+  <div class="avis-grid">
+    <div class="avis-card">
+      <p class="avis-quote">Un accompagnement d'une douceur rare. ariana prend le temps d'écouter, de comprendre. Le résultat dépasse tout ce que j'espérais.</p>
+      <p class="avis-author">Marie L.</p>
     </div>
-    <div class="gallery-item">
-      <div class="gallery-overlay">
-        <p class="gallery-category">Paramédical</p>
-        <p class="gallery-label">Pigmentation naturelle</p>
-      </div>
+    <div class="avis-card">
+      <p class="avis-quote">Après ma reconstruction, ce tatouage a été la dernière étape. Un moment très fort. Je recommande ariana les yeux fermés.</p>
+      <p class="avis-author">Sophie M.</p>
     </div>
-    <div class="gallery-item">
-      <div class="gallery-overlay">
-        <p class="gallery-category">Paramédical</p>
-        <p class="gallery-label">Effet trompe-l'œil</p>
-      </div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="gallery-overlay">
-        <p class="gallery-category">Paramédical</p>
-        <p class="gallery-label">Catalogue aréoles</p>
-      </div>
+    <div class="avis-card">
+      <p class="avis-quote">Une artiste autant qu'une professionnelle de santé. Elle m'a redonné confiance en mon corps. Merci, ariana.</p>
+      <p class="avis-author">Claire D.</p>
     </div>
   </div>
 </section>
