@@ -259,6 +259,45 @@ footer{
 }
 
 /* ═══════════════════════════════════════
+   EXPLICATION
+═══════════════════════════════════════ */
+.explication{background:var(--cream);padding:100px 40px}
+.explication-inner{max-width:700px;margin:0 auto}
+.explication-inner .section-title{margin-bottom:32px}
+.explication-body{display:flex;flex-direction:column;gap:20px}
+.explication-body p{font-size:1.05rem;color:var(--ink-soft);line-height:1.8}
+
+/* ═══════════════════════════════════════
+   PROCESS
+═══════════════════════════════════════ */
+.process{background:var(--ink);color:var(--cream);overflow:hidden;position:relative}
+.process::before{content:'';position:absolute;top:0;right:0;width:600px;height:600px;background:radial-gradient(circle,rgba(217,154,165,0.15) 0%,transparent 70%);pointer-events:none}
+.process .section-tag{color:var(--rose-dust)}
+.process .section-tag::before{background:var(--accent-yellow)}
+.process .section-title{color:var(--cream)}
+.process .section-title em{color:var(--rose-dust)}
+.process-header{max-width:700px;margin-bottom:80px;position:relative;z-index:2}
+.process-header .section-subtitle{color:rgba(250,245,240,0.7)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:1300px;margin:0 auto;position:relative;z-index:2}
+.step{padding:40px 30px;border-top:1px solid rgba(250,245,240,0.15);transition:border-color 0.3s;position:relative}
+.step:hover{border-top-color:var(--rose-dust)}
+.step-number{font-family:'Fraunces',serif;font-style:italic;font-size:3rem;font-weight:300;color:var(--accent-yellow);margin-bottom:20px;line-height:1}
+.step-title{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:400;margin-bottom:14px}
+.step-desc{color:rgba(250,245,240,0.6);font-size:0.92rem;line-height:1.7}
+
+/* ═══════════════════════════════════════
+   TARIFS
+═══════════════════════════════════════ */
+.tarifs{background:var(--cream-warm);padding:100px 40px}
+.tarifs-header{max-width:700px;margin:0 auto 60px}
+.tarifs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1300px;margin:0 auto}
+.tarif-card{background:var(--cream);border-radius:6px;padding:40px 32px;border:1px solid rgba(42,31,34,0.08);transition:box-shadow 0.3s}
+.tarif-card:hover{box-shadow:0 20px 40px var(--shadow)}
+.tarif-name{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:12px}
+.tarif-desc{font-size:0.92rem;color:var(--ink-soft);line-height:1.7;margin-bottom:24px}
+.tarif-price{font-family:'Fraunces',serif;font-style:italic;font-size:1.6rem;color:var(--rose-deep)}
+
+/* ═══════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════ */
 @media(max-width:900px){
@@ -267,9 +306,12 @@ footer{
   section{padding:80px 20px}
   .gallery-shop-grid{grid-template-columns:1fr 1fr;gap:12px}
   .footer-grid{grid-template-columns:1fr;gap:40px}
+  .process-steps{grid-template-columns:1fr 1fr;gap:20px}
+  .tarifs-grid{grid-template-columns:1fr}
 }
 @media(max-width:600px){
   .gallery-shop-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -298,9 +340,82 @@ footer{
 <!-- HERO COURT -->
 <section class="hero-short">
   <div class="hero-short-content">
-    <p class="hero-short-tag">Galerie — Artistique</p>
+    <p class="hero-short-tag">Artistique</p>
     <h1 class="hero-short-title">Tatouages <em>artistiques</em></h1>
-    <p class="hero-short-desc">Une démarche créative et sur-mesure.</p>
+    <p class="hero-short-desc">[TEXTE PROVISOIRE — tatouage artistique sur-mesure, liberté créative, à remplacer par le contenu reel d'ariana]</p>
+  </div>
+</section>
+
+<!-- EXPLICATION -->
+<section class="explication">
+  <div class="explication-inner">
+    <p class="section-tag">Tatouage sur-mesure</p>
+    <h2 class="section-title">Un tatouage qui <em>vous ressemble</em>.</h2>
+    <!-- TEXTE PROVISOIRE ARTISTIQUE A REMPLACER -->
+    <div class="explication-body">
+      <p>Le tatouage artistique chez ariana, c'est une démarche entièrement sur-mesure. Pas de flash, pas de catalogue : chaque pièce naît d'un échange, d'un univers, d'une intention. Qu'il s'agisse d'un motif botanique délicat, d'une composition abstraite ou d'un geste graphique affirmé, le point de départ est toujours votre histoire.</p>
+      <p>ariana travaille principalement en noir et gris, avec une attention particulière au trait, aux textures et à la façon dont le tatouage vieillit sur la peau. Chaque projet est conçu pour durer — techniquement et esthétiquement.</p>
+      <p>La consultation est le cœur du processus. C'est là que le projet prend forme : références visuelles, placement, taille, style. Rien n'est figé avant qu'on ait trouvé ensemble ce qui fait sens pour vous.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-header">
+    <p class="section-tag">Parcours</p>
+    <h2 class="section-title">De la première rencontre<br>au <em>résultat final</em>.</h2>
+    <p class="section-subtitle">
+      Un parcours en quatre étapes, pensé pour respecter votre rythme, vos émotions et votre peau.
+    </p>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-number">01</div>
+      <h3 class="step-title">Consultation</h3>
+      <p class="step-desc">Un premier échange confidentiel pour comprendre votre parcours, vos attentes et définir la technique adaptée.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">02</div>
+      <h3 class="step-title">Conception</h3>
+      <p class="step-desc">Étude des couleurs, du relief, des dimensions. Chaque projet est unique et pensé pour votre peau.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">03</div>
+      <h3 class="step-title">Séance</h3>
+      <p class="step-desc">Dans un environnement calme et stérile, la séance dure entre 1 et 3 heures selon la complexité du projet.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">04</div>
+      <h3 class="step-title">Suivi</h3>
+      <p class="step-desc">Une retouche est comprise 4 à 6 semaines après la séance initiale pour garantir un résultat durable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section class="tarifs">
+  <div class="tarifs-header">
+    <p class="section-tag">Tarifs</p>
+    <h2 class="section-title">Prestations <em>&amp; tarifs</em>.</h2>
+  </div>
+  <!-- TARIFS PROVISOIRES ARTISTIQUE A REMPLACER -->
+  <div class="tarifs-grid">
+    <div class="tarif-card">
+      <h3 class="tarif-name">Petit tatouage</h3>
+      <p class="tarif-desc">Motif délicat, format pièce de monnaie à paume de main. Idéal pour un premier tatouage ou un ajout discret.</p>
+      <p class="tarif-price">à partir de 120 €</p>
+    </div>
+    <div class="tarif-card">
+      <h3 class="tarif-name">Pièce moyenne</h3>
+      <p class="tarif-desc">Composition sur-mesure, format poing fermé à demi-avant-bras. Une à deux séances selon la complexité.</p>
+      <p class="tarif-price">à partir de 280 €</p>
+    </div>
+    <div class="tarif-card">
+      <h3 class="tarif-name">Grande pièce sur-mesure</h3>
+      <p class="tarif-desc">Projet ambitieux, sleeve ou demi-sleeve, dos, cuisse. Devis personnalisé après consultation.</p>
+      <p class="tarif-price">sur devis</p>
+    </div>
   </div>
 </section>
 
@@ -308,31 +423,31 @@ footer{
 <section class="gallery-shop">
   <div class="gallery-shop-grid">
 
-    <!-- À remplacer par photo tatouage artistique ariana -->
+    <!-- Photos tatouages artistiques - a remplacer -->
     <div class="gallery-shop-item gs-1"></div>
 
-    <!-- À remplacer par photo tatouage artistique ariana -->
+    <!-- Photos tatouages artistiques - a remplacer -->
     <div class="gallery-shop-item gs-2"></div>
 
-    <!-- À remplacer par photo tatouage artistique ariana -->
+    <!-- Photos tatouages artistiques - a remplacer -->
     <div class="gallery-shop-item gs-3"></div>
 
-    <!-- À remplacer par photo tatouage artistique ariana -->
+    <!-- Photos tatouages artistiques - a remplacer -->
     <div class="gallery-shop-item gs-4"></div>
 
-    <!-- À remplacer par photo tatouage artistique ariana -->
+    <!-- Photos tatouages artistiques - a remplacer -->
     <div class="gallery-shop-item gs-5"></div>
 
-    <!-- À remplacer par photo tatouage artistique ariana -->
+    <!-- Photos tatouages artistiques - a remplacer -->
     <div class="gallery-shop-item gs-6"></div>
 
-    <!-- À remplacer par photo tatouage artistique ariana -->
+    <!-- Photos tatouages artistiques - a remplacer -->
     <div class="gallery-shop-item gs-7"></div>
 
-    <!-- À remplacer par photo tatouage artistique ariana -->
+    <!-- Photos tatouages artistiques - a remplacer -->
     <div class="gallery-shop-item gs-8"></div>
 
-    <!-- À remplacer par photo tatouage artistique ariana -->
+    <!-- Photos tatouages artistiques - a remplacer -->
     <div class="gallery-shop-item gs-9"></div>
 
   </div>
