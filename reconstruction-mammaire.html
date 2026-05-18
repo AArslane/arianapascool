@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reconstruction mammaire — ariana pascool</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,400&family=Caveat:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   BASE — variables & reset
+   (partagé avec index.html — TODO : extraire en styles.css commun)
+═══════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#faf5f0;
+  --cream-warm:#f4ebe0;
+  --rose-whisper:#f8dde3;
+  --rose-pale:#f0c4ce;
+  --rose-dust:#d99aa5;
+  --rose-deep:#8a4a56;
+  --ink:#2a1f22;
+  --ink-soft:#5c4850;
+  --gold:#b8956a;
+  --accent-yellow:#EAD9A0;
+  --shadow:rgba(138,74,86,0.08);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);color:var(--ink);
+  font-family:'DM Sans',sans-serif;font-weight:300;
+  overflow-x:hidden;line-height:1.7;font-size:16px;
+}
+
+/* Grain overlay */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  opacity:0.4;mix-blend-mode:multiply;
+}
+
+::selection{background:var(--rose-pale);color:var(--ink)}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--rose-dust);border-radius:4px}
+
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:flex-start;gap:24px;align-items:center;padding:24px 40px;mix-blend-mode:difference}
+.site-logo{font-family:'Caveat',cursive;font-size:22px;color:#fff;text-decoration:none}
+.burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;width:44px;height:44px;justify-content:center}
+.burger span{display:block;width:24px;height:2px;background:#fff;transition:transform 0.3s,opacity 0.3s}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:first-child{transform:rotate(45deg) translate(5px,7px)}
+.burger.open span:last-child{transform:rotate(-45deg) translate(5px,-7px)}
+.menu-overlay{position:fixed;inset:0;z-index:99;background:var(--cream);opacity:0;pointer-events:none;transition:opacity 0.4s ease;display:flex;flex-direction:column;justify-content:center;padding:80px}
+.menu-overlay.open{opacity:1;pointer-events:auto}
+.menu-nav{display:flex;flex-direction:column;gap:24px}
+.menu-link{font-family:'Fraunces',serif;font-style:italic;font-size:96px;line-height:1.1;color:var(--ink);text-decoration:none;opacity:0;transform:translateY(20px);transition:opacity 0.3s ease,transform 0.3s ease}
+.menu-overlay.open .menu-link{opacity:1;transform:translateY(0)}
+.menu-overlay.open .menu-link:nth-child(1){transition-delay:0.1s}
+.menu-overlay.open .menu-link:nth-child(2){transition-delay:0.16s}
+.menu-overlay.open .menu-link:nth-child(3){transition-delay:0.22s}
+.menu-overlay.open .menu-link:nth-child(4){transition-delay:0.28s}
+.menu-nav:hover .menu-link{opacity:0.35;transition:opacity 0.3s ease,transform 0.3s ease}
+.menu-nav:hover .menu-link:hover{opacity:1;transform:translateX(16px)}
+.menu-link.active{color:var(--rose-deep);text-decoration:underline;text-underline-offset:12px}
+.menu-signature{position:absolute;bottom:80px;left:80px}
+.signature-name{font-family:'Caveat',cursive;font-size:24px;margin:0 0 8px}
+.signature-insta{font-family:'DM Sans',sans-serif;font-size:16px;color:var(--ink);text-decoration:none}
+@media(max-width:900px){.menu-link{font-size:64px}}
+@media(max-width:600px){.menu-link{font-size:48px}.menu-overlay{padding:40px}.menu-signature{left:40px;bottom:40px}}
+
+/* ═══════════════════════════════════════
+   SECTIONS — base
+═══════════════════════════════════════ */
+section{padding:100px 40px;position:relative;z-index:2}
+
+.section-tag{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:'DM Sans',sans-serif;font-size:0.8rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--rose-deep);margin-bottom:24px;font-weight:500;
+}
+.section-tag::before{content:'';width:30px;height:1px;background:var(--rose-deep)}
+
+.section-title{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:clamp(2.2rem,4.5vw,3.8rem);line-height:1.05;
+  letter-spacing:-0.02em;margin-bottom:24px;color:var(--ink);
+}
+.section-title em{font-style:italic;color:var(--rose-deep);font-weight:300}
+
+.section-subtitle{
+  font-size:1.1rem;color:var(--ink-soft);
+  max-width:560px;line-height:1.7;
+}
+
+/* ═══════════════════════════════════════
+   HERO COURT (~50vh)
+═══════════════════════════════════════ */
+.hero-short{
+  min-height:50vh;
+  padding:160px 40px 70px;
+  display:flex;align-items:flex-end;
+  background:var(--cream);
+  position:relative;overflow:hidden;
+}
+/* Dégradé décoratif subtil — cohérent avec index.html */
+.hero-short::before{
+  content:'';position:absolute;top:80px;right:-60px;
+  width:420px;height:420px;pointer-events:none;
+  background:radial-gradient(circle,var(--rose-whisper) 0%,transparent 70%);
+  opacity:0.55;
+}
+.hero-short-content{
+  position:relative;z-index:2;
+  max-width:800px;
+}
+.hero-short-tag{
+  font-family:'DM Sans',sans-serif;font-size:0.85rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--rose-deep);margin-bottom:28px;
+  display:flex;align-items:center;gap:14px;
+}
+.hero-short-tag::before{content:'';width:40px;height:1px;background:var(--rose-deep)}
+
+.hero-short-title{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:clamp(2.8rem,6vw,5rem);line-height:0.95;
+  color:var(--ink);margin-bottom:24px;letter-spacing:-0.02em;
+}
+.hero-short-title em{font-style:italic;color:var(--rose-deep);font-weight:300}
+
+.hero-short-desc{
+  font-size:1.1rem;line-height:1.8;color:var(--ink-soft);
+  max-width:520px;
+}
+
+/* ═══════════════════════════════════════
+   GALERIE — grille 3×3
+═══════════════════════════════════════ */
+.gallery-shop{background:var(--cream-warm)}
+
+.gallery-shop-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  max-width:1300px;margin:0 auto;
+}
+
+.gallery-shop-item{
+  aspect-ratio:4/5;
+  border-radius:6px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:opacity 0.35s ease, transform 0.5s cubic-bezier(0.19,1,0.22,1);
+}
+.gallery-shop-item:hover{
+  opacity:0.85;
+  transform:scale(1.02);
+}
+
+/* Placeholders — à remplacer par photos réelles */
+.gs-1{background:linear-gradient(135deg,#f8dde3,#f0c4ce)}
+.gs-2{background:linear-gradient(135deg,#f4ebe0,#e8d5c4)}
+.gs-3{background:linear-gradient(135deg,#f0c4ce,#d99aa5)}
+.gs-4{background:linear-gradient(135deg,#d99aa5,#c4948e)}
+.gs-5{background:linear-gradient(135deg,#faf5f0,#f4ebe0)}
+.gs-6{background:linear-gradient(135deg,#b8956a,#c9a68e)}
+.gs-7{background:linear-gradient(135deg,#f8dde3,#e0b4c0)}
+.gs-8{background:linear-gradient(135deg,#e8d5c4,#d4b5a0)}
+.gs-9{background:linear-gradient(135deg,#f0c4ce,#b8838f)}
+
+/* ═══════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════ */
+.contact{
+  background:linear-gradient(180deg,var(--cream-warm) 0%,var(--rose-whisper) 100%);
+  padding:140px 40px 100px;
+  position:relative;overflow:hidden;
+}
+.contact::before{
+  content:'';position:absolute;top:50%;right:-200px;transform:translateY(-50%);
+  width:500px;height:500px;border-radius:50%;
+  background:var(--rose-pale);opacity:0.3;filter:blur(80px);
+}
+.contact-wrapper{
+  max-width:1100px;margin:0 auto;
+  position:relative;z-index:2;
+}
+.contact-wrapper--single{max-width:680px}
+
+.contact-details{margin-top:40px;display:flex;flex-direction:column;gap:20px}
+.contact-item{display:flex;gap:16px;align-items:flex-start}
+.contact-item-icon{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--ink);color:var(--cream);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0;
+}
+.contact-item-label{
+  font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:4px;
+}
+.contact-item-value{
+  font-family:'Fraunces',serif;font-size:1.1rem;color:var(--ink);
+}
+.contact-item-link{
+  font-family:'Fraunces',serif;font-size:1.1rem;color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid rgba(42,31,34,0.2);
+  padding-bottom:2px;display:inline-block;
+  transition:color 0.3s,border-color 0.3s;
+}
+.contact-item-link:hover{color:var(--rose-deep);border-color:var(--rose-deep)}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer{
+  background:var(--ink);color:var(--cream);
+  padding:80px 40px 40px;position:relative;overflow:hidden;
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;
+  max-width:1300px;margin:0 auto 60px;
+}
+.footer-brand{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:2rem;margin-bottom:20px;
+}
+.footer-tagline{
+  color:rgba(250,245,240,0.6);max-width:400px;line-height:1.7;
+}
+.footer-title{
+  font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;
+  margin-bottom:24px;color:var(--rose-dust);
+}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-links a{
+  color:rgba(250,245,240,0.6);text-decoration:none;
+  font-size:0.95rem;transition:color 0.3s;
+}
+.footer-links a:hover{color:var(--accent-yellow)}
+.footer-bottom{
+  border-top:1px solid rgba(250,245,240,0.1);padding-top:30px;
+  max-width:1300px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:0.85rem;color:rgba(250,245,240,0.4);
+  flex-wrap:wrap;gap:16px;
+}
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ═══════════════════════════════════════
+   EXPLICATION
+═══════════════════════════════════════ */
+.explication{background:var(--cream);padding:100px 40px}
+.explication-inner{max-width:700px;margin:0 auto}
+.explication-inner .section-title{margin-bottom:32px}
+.explication-body{display:flex;flex-direction:column;gap:20px}
+.explication-body p{font-size:1.05rem;color:var(--ink-soft);line-height:1.8}
+
+/* ═══════════════════════════════════════
+   PROCESS
+═══════════════════════════════════════ */
+.process{background:var(--ink);color:var(--cream);overflow:hidden;position:relative}
+.process::before{content:'';position:absolute;top:0;right:0;width:600px;height:600px;background:radial-gradient(circle,rgba(217,154,165,0.15) 0%,transparent 70%);pointer-events:none}
+.process .section-tag{color:var(--rose-dust)}
+.process .section-tag::before{background:var(--accent-yellow)}
+.process .section-title{color:var(--cream)}
+.process .section-title em{color:var(--rose-dust)}
+.process-header{max-width:700px;margin-bottom:80px;position:relative;z-index:2}
+.process-header .section-subtitle{color:rgba(250,245,240,0.7)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:1300px;margin:0 auto;position:relative;z-index:2}
+.step{padding:40px 30px;border-top:1px solid rgba(250,245,240,0.15);transition:border-color 0.3s;position:relative}
+.step:hover{border-top-color:var(--rose-dust)}
+.step-number{font-family:'Fraunces',serif;font-style:italic;font-size:3rem;font-weight:300;color:var(--accent-yellow);margin-bottom:20px;line-height:1}
+.step-title{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:400;margin-bottom:14px}
+.step-desc{color:rgba(250,245,240,0.6);font-size:0.92rem;line-height:1.7}
+
+/* ═══════════════════════════════════════
+   TARIFS
+═══════════════════════════════════════ */
+.tarifs{background:var(--cream-warm);padding:100px 40px}
+.tarifs-header{max-width:700px;margin:0 auto 60px}
+.tarifs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1300px;margin:0 auto}
+.tarif-card{background:var(--cream);border-radius:6px;padding:40px 32px;border:1px solid rgba(42,31,34,0.08);transition:box-shadow 0.3s}
+.tarif-card:hover{box-shadow:0 20px 40px var(--shadow)}
+.tarif-name{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:12px}
+.tarif-desc{font-size:0.92rem;color:var(--ink-soft);line-height:1.7;margin-bottom:24px}
+.tarif-price{font-family:'Fraunces',serif;font-style:italic;font-size:1.6rem;color:var(--rose-deep)}
+
+@media(max-width:900px){
+  nav{padding:16px 20px}
+  .hero-short{padding:120px 20px 60px;min-height:40vh}
+  section{padding:80px 20px}
+  .gallery-shop-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .footer-grid{grid-template-columns:1fr;gap:40px}
+  .process-steps{grid-template-columns:1fr 1fr;gap:20px}
+  .tarifs-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .gallery-shop-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="index.html" class="site-logo">ariana pascool</a>
+</header>
+
+<div class="menu-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <nav class="menu-nav">
+    <a href="index.html" class="menu-link">Reconstruction d'aréoles</a>
+    <a href="shop-areoles.html" class="menu-link">Galerie aréoles</a>
+    <a href="artistique.html" class="menu-link">Tatouages artistiques</a>
+    <a href="index.html#contact" class="menu-link">Contact</a>
+  </nav>
+  <div class="menu-signature">
+    <p class="signature-name">ariana pascool</p>
+    <a href="https://instagram.com/arianapascool" class="signature-insta">@arianapascool</a>
+  </div>
+</div>
+
+<!-- HERO COURT -->
+<section class="hero-short">
+  <div class="hero-short-content">
+    <p class="hero-short-tag">Paramédical</p>
+    <h1 class="hero-short-title">Reconstruction <em>mammaire</em></h1>
+    <p class="hero-short-desc">[TEXTE PROVISOIRE — reconstruction de l'aréole et du mamelon en 3D après reconstruction chirurgicale du sein, à remplacer par le contenu réel d'ariana]</p>
+  </div>
+</section>
+
+<!-- EXPLICATION -->
+<section class="explication">
+  <div class="explication-inner">
+    <p class="section-tag">Tatouage paramédical</p>
+    <h2 class="section-title">Redonner corps à <em>ce qui a été pris</em>.</h2>
+    <!-- TEXTE PROVISOIRE PARAMEDICAL A REMPLACER -->
+    <div class="explication-body">
+      <p>Après une reconstruction chirurgicale du sein, le tatouage paramédical d'aréole et de mamelon en 3D est souvent la dernière étape du parcours de reconstruction. Une technique pigmentaire en trompe-l'œil qui redonne au sein opéré son aréole et son mamelon, avec un rendu naturel et durable.</p>
+      <p>Ce geste n'est pas seulement esthétique : il est profondément intime. Pour beaucoup de femmes, c'est le moment où elles retrouvent un corps qui leur ressemble à nouveau — un corps entier. ariana accompagne ce moment avec attention, douceur et une technique précise adaptée aux peaux ayant traversé la chirurgie et la radiothérapie.</p>
+      <p>Chaque séance commence par une consultation confidentielle pour comprendre votre parcours, étudier les tonalités de votre peau et définir ensemble le résultat qui vous correspond. Rien n'est imposé — tout est pensé avec vous.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-header">
+    <p class="section-tag">Parcours</p>
+    <h2 class="section-title">De la première rencontre<br>au <em>résultat final</em>.</h2>
+    <p class="section-subtitle">
+      Un parcours en quatre étapes, pensé pour respecter votre rythme, vos émotions et votre peau.
+    </p>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-number">01</div>
+      <h3 class="step-title">Consultation</h3>
+      <p class="step-desc">Un premier échange confidentiel pour comprendre votre parcours, vos attentes et définir la technique adaptée.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">02</div>
+      <h3 class="step-title">Conception</h3>
+      <p class="step-desc">Étude des couleurs, du relief, des dimensions. Chaque projet est unique et pensé pour votre peau.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">03</div>
+      <h3 class="step-title">Séance</h3>
+      <p class="step-desc">Dans un environnement calme et stérile, la séance dure entre 1 et 3 heures selon la complexité du projet.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">04</div>
+      <h3 class="step-title">Suivi</h3>
+      <p class="step-desc">Une retouche est comprise 4 à 6 semaines après la séance initiale pour garantir un résultat durable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section class="tarifs">
+  <div class="tarifs-header">
+    <p class="section-tag">Tarifs</p>
+    <h2 class="section-title">Prestations <em>&amp; tarifs</em>.</h2>
+  </div>
+  <!-- TARIFS PROVISOIRES PARAMEDICAL A REMPLACER -->
+  <div class="tarifs-grid">
+    <div class="tarif-card">
+      <h3 class="tarif-name">Consultation</h3>
+      <p class="tarif-desc">Premier rendez-vous dédié à l'échange sur votre parcours, l'étude de votre peau et la définition du projet.</p>
+      <p class="tarif-price">offerte</p>
+    </div>
+    <div class="tarif-card">
+      <h3 class="tarif-name">Reconstruction unilatérale</h3>
+      <p class="tarif-desc">Reconstruction 3D d'une aréole et du mamelon sur un sein après chirurgie mammaire.</p>
+      <p class="tarif-price">à partir de 350 €</p>
+    </div>
+    <div class="tarif-card">
+      <h3 class="tarif-name">Reconstruction bilatérale</h3>
+      <p class="tarif-desc">Reconstruction 3D des deux aréoles et mamelons, réalisée en une ou deux séances selon les besoins.</p>
+      <p class="tarif-price">à partir de 600 €</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE — 3×3, 9 placeholders -->
+<section class="gallery-shop">
+  <div class="gallery-shop-grid">
+
+    <!-- Photos reconstruction mammaire - a remplacer -->
+    <div class="gallery-shop-item gs-1"></div>
+
+    <!-- Photos reconstruction mammaire - a remplacer -->
+    <div class="gallery-shop-item gs-2"></div>
+
+    <!-- Photos reconstruction mammaire - a remplacer -->
+    <div class="gallery-shop-item gs-3"></div>
+
+    <!-- Photos reconstruction mammaire - a remplacer -->
+    <div class="gallery-shop-item gs-4"></div>
+
+    <!-- Photos reconstruction mammaire - a remplacer -->
+    <div class="gallery-shop-item gs-5"></div>
+
+    <!-- Photos reconstruction mammaire - a remplacer -->
+    <div class="gallery-shop-item gs-6"></div>
+
+    <!-- Photos reconstruction mammaire - a remplacer -->
+    <div class="gallery-shop-item gs-7"></div>
+
+    <!-- Photos reconstruction mammaire - a remplacer -->
+    <div class="gallery-shop-item gs-8"></div>
+
+    <!-- Photos reconstruction mammaire - a remplacer -->
+    <div class="gallery-shop-item gs-9"></div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-wrapper contact-wrapper--single">
+    <div>
+      <p class="section-tag">Contact</p>
+      <h2 class="section-title">Prenons le temps<br>d'en <em>parler</em>.</h2>
+      <p class="section-subtitle">
+        Pour échanger sur un projet de reconstruction, écrivez-moi directement.
+      </p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-item-icon">✉</div>
+          <div>
+            <p class="contact-item-label">Email</p>
+            <a href="mailto:ariana@arianapascool.com" class="contact-item-value contact-item-link">ariana@arianapascool.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">◎</div>
+          <div>
+            <p class="contact-item-label">Instagram</p>
+            <a href="https://instagram.com/arianapascool" target="_blank" rel="noopener" class="contact-item-value contact-item-link">@arianapascool</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">◉</div>
+          <div>
+            <p class="contact-item-label">Studio</p>
+            <p class="contact-item-value">Toulouse, France</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <p class="footer-brand">ariana pascool</p>
+      <p class="footer-tagline">
+        Tatouage paramédical et artistique. Une approche sensible de la reconstruction, par le geste et la patience.
+      </p>
+    </div>
+    <div>
+      <p class="footer-title">Navigation</p>
+      <ul class="footer-links">
+        <li><a href="index.html#about">À propos</a></li>
+        <li><a href="index.html#services">Prestations</a></li>
+        <li><a href="index.html#process">Parcours</a></li>
+        <li><a href="shop-areoles.html">Galerie aréoles</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-title">Suivre</p>
+      <ul class="footer-links">
+        <li><a href="https://instagram.com/arianapascool" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Mentions légales</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 ariana pascool. Tous droits réservés.</p>
+    <p>Toulouse, France</p>
+  </div>
+</footer>
+
+<script>
+// Smooth scroll (liens internes uniquement)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
+});
+
+// Fade-in des sections (hors hero court)
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, {threshold: 0.1});
+
+document.querySelectorAll('section:not(.hero-short)').forEach(section => {
+  section.style.opacity = '0';
+  section.style.transform = 'translateY(40px)';
+  section.style.transition = 'opacity 1s cubic-bezier(0.19,1,0.22,1), transform 1s cubic-bezier(0.19,1,0.22,1)';
+  observer.observe(section);
+});
+</script>
+<script>
+const burger = document.querySelector('.burger');
+const overlay = document.querySelector('.menu-overlay');
+const links = document.querySelectorAll('.menu-link');
+function toggleMenu() {
+  const isOpen = overlay.classList.toggle('open');
+  burger.classList.toggle('open');
+  burger.setAttribute('aria-expanded', isOpen);
+  overlay.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+burger.addEventListener('click', toggleMenu);
+links.forEach(link => link.addEventListener('click', () => {
+  overlay.classList.remove('open');
+  burger.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && overlay.classList.contains('open')) toggleMenu();
+});
+</script>
+
+</body>
+</html>
