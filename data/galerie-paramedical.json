@@ -1,3 +1,20 @@
 {
-  "photos": []
+  "photos": [
+    {
+      "alt": "Les différentes étapes d’une reconstruction partielle d’aréole mammaire ",
+      "image": "/images/uploads/img_6047.jpeg"
+    },
+    {
+      "image": "/images/uploads/img_5787.jpeg",
+      "alt": "Dermopigmentation d’aréole mammaire sur peau synthétique"
+    },
+    {
+      "image": "/images/uploads/img_5788.jpeg",
+      "alt": "Dermopigmentation d’aréole mammaire sur peau synthétique"
+    },
+    {
+      "image": "/images/uploads/img_5789.jpeg",
+      "alt": "Dermopigmentation d’aréole mammaire sur peau synthétique"
+    }
+  ]
 }
