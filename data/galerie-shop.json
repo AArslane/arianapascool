@@ -1,1 +1,24 @@
-{"photos":[]}
+{
+  "photos": [
+    {
+      "image": "/images/uploads/img_5990.jpeg",
+      "alt": "Dermopigmentation d’aréole mammaire sur peau synthétique avec percing en trompe l’oeil"
+    },
+    {
+      "image": "/images/uploads/img_5815.jpeg",
+      "alt": "Tableau explicatif pour sublimer son aréole "
+    },
+    {
+      "image": "/images/uploads/img_5784.jpeg",
+      "alt": "Exemples d’aréoles mammaires avec ou sans ornements"
+    },
+    {
+      "image": "/images/uploads/img_6055.jpeg",
+      "alt": "Exemples d’aréoles mammaires avec ou sans ornements"
+    },
+    {
+      "image": "/images/uploads/img_5783.jpeg",
+      "alt": "Exemple d’aréole mammaire avec  ornement sur modèle"
+    }
+  ]
+}
