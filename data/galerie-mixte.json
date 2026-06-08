@@ -1,1 +1,14 @@
-{"photos":[]}
+{
+  "photos": [
+    {
+      "image": "/images/uploads/img_5786.jpeg",
+      "alt": "Exemples d’aréoles sur peau synthétique",
+      "categorie": "Tatouage paramédical"
+    },
+    {
+      "image": "/images/uploads/img_6046.jpeg",
+      "alt": "Petite photo de moi",
+      "categorie": "Tatouage artistique"
+    }
+  ]
+}
