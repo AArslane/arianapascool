@@ -1,0 +1,65 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "galeries"
+    label: "Galeries photos"
+    files:
+      - name: "galerie-paramedical"
+        label: "Galerie Tatouage Paramédical"
+        file: "data/galerie-paramedical.json"
+        fields:
+          - name: "photos"
+            label: "Photos"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            fields:
+              - { name: "image", label: "Photo", widget: "image" }
+              - { name: "alt", label: "Description courte", widget: "string" }
+
+      - name: "galerie-shop"
+        label: "Galerie Shop Aréoles"
+        file: "data/galerie-shop.json"
+        fields:
+          - name: "photos"
+            label: "Photos"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            fields:
+              - { name: "image", label: "Photo", widget: "image" }
+              - { name: "alt", label: "Description courte", widget: "string" }
+
+      - name: "galerie-artistique"
+        label: "Galerie Tatouages Artistiques"
+        file: "data/galerie-artistique.json"
+        fields:
+          - name: "photos"
+            label: "Photos"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            fields:
+              - { name: "image", label: "Photo", widget: "image" }
+              - { name: "alt", label: "Description courte", widget: "string" }
+
+      - name: "galerie-mixte"
+        label: "Galerie Accueil (mixte)"
+        file: "data/galerie-mixte.json"
+        fields:
+          - name: "photos"
+            label: "Photos"
+            widget: "list"
+            summary: "{{fields.alt}} ({{fields.categorie}})"
+            fields:
+              - { name: "image", label: "Photo", widget: "image" }
+              - { name: "alt", label: "Description courte", widget: "string" }
+              - name: "categorie"
+                label: "Catégorie"
+                widget: "select"
+                options:
+                  - "Tatouage paramédical"
+                  - "Shop aréoles"
+                  - "Tatouage artistique"
