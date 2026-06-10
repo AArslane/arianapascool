@@ -27,3 +27,6 @@ build/
 .Spotlight-V100
 .Trashes
 ehthumbs.db
+
+# Photos larguées à la racine par erreur
+/img_6046.jpeg
