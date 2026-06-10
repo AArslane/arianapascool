@@ -63,3 +63,13 @@ collections:
                   - "Tatouage paramédical"
                   - "Shop aréoles"
                   - "Tatouage artistique"
+
+      - name: "presentation"
+        label: "Photos de présentation"
+        file: "data/presentation.json"
+        fields:
+          - { name: "hero", label: "Photo Hero (accueil)", widget: "image", required: false }
+          - { name: "about", label: "Photo About (portrait Caroline)", widget: "image", required: false }
+          - { name: "univers_paramedical", label: "Photo Tatouage paramédical", widget: "image", required: false }
+          - { name: "univers_shop", label: "Photo Shop aréoles", widget: "image", required: false }
+          - { name: "univers_artistique", label: "Photo Tatouage artistique", widget: "image", required: false }

@@ -6,7 +6,7 @@
 <title>cherrylicious — L'art de la reconstruction</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,400&family=Caveat:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,400&family=Caveat:wght@400;600&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -427,7 +427,8 @@ footer{
 @media(max-width:900px){
   nav{padding:16px 20px}
   .hero{grid-template-columns:1fr;gap:40px;padding:120px 20px 60px;height:auto;min-height:100vh}
-  .hero-right{height:300px;align-self:auto}
+  .hero-right{aspect-ratio:3/4;align-self:auto}
+  .hero-image{object-fit:cover}
   section{padding:80px 20px}
   .about-grid,.footer-grid{grid-template-columns:1fr;gap:40px}
   .univers-block{grid-template-columns:1fr;min-height:auto}
@@ -439,6 +440,7 @@ footer{
 }
 @media(max-width:600px){
   .galerie-mixte-grid{grid-template-columns:1fr}
+  .hero-right{aspect-ratio:3/4}
 }
 
 /* Contact — colonne unique */
@@ -450,6 +452,8 @@ footer{
   transition:color 0.3s,border-color 0.3s;
 }
 .contact-item-link:hover{color:var(--rose-deep);border-color:var(--rose-deep)}
+strong { font-weight: 700 !important; letter-spacing: 0.01em; } strong em, em strong { font-weight: 700 !important; font-style: italic !important; }
+.hero-image.has-photo::after { display: none; }
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -749,6 +753,31 @@ document.addEventListener('keydown', e => {
         grid.appendChild(div);
       });
     });
+</script>
+<script>
+fetch('data/presentation.json').then(function(r){return r.json();}).then(function(d){
+  var imgStyle = 'width:100%;height:100%;object-fit:cover;border-radius:inherit;';
+  if(d.hero){
+    var h=document.querySelector('.hero-image');
+    if(h){h.classList.add('has-photo');h.insertAdjacentHTML('afterbegin','<img src="'+d.hero+'" alt="Caroline - Cherrylicious" style="'+imgStyle+'">');}
+  }
+  if(d.about){
+    var a=document.querySelector('.about-visual-main');
+    if(a){a.insertAdjacentHTML('afterbegin','<img src="'+d.about+'" alt="Portrait Caroline" style="'+imgStyle+'">');}
+  }
+  if(d.univers_paramedical){
+    var u1=document.querySelector('.univers-visual.uv-1');
+    if(u1){u1.insertAdjacentHTML('afterbegin','<img src="'+d.univers_paramedical+'" alt="Tatouage paramédical" style="'+imgStyle+'">');}
+  }
+  if(d.univers_shop){
+    var u2=document.querySelector('.univers-visual.uv-2');
+    if(u2){u2.insertAdjacentHTML('afterbegin','<img src="'+d.univers_shop+'" alt="Shop aréoles" style="'+imgStyle+'">');}
+  }
+  if(d.univers_artistique){
+    var u3=document.querySelector('.univers-visual.uv-3');
+    if(u3){u3.insertAdjacentHTML('afterbegin','<img src="'+d.univers_artistique+'" alt="Tatouage artistique" style="'+imgStyle+'">');}
+  }
+}).catch(function(){});
 </script>
 </body>
 </html>

@@ -258,4 +258,5 @@ footer{
 }
 @media(max-width:600px){
   .gallery-page-grid{grid-template-columns:1fr}
+  .gallery-page-item{aspect-ratio:3/4}
 }
