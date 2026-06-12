@@ -6,8 +6,23 @@
       "categorie": "Tatouage paramédical"
     },
     {
-      "image": "/images/uploads/img_6046.jpeg",
-      "alt": "Petite photo de moi",
+      "image": "/images/uploads/img_5784.jpeg",
+      "categorie": "Shop aréoles",
+      "alt": "Exemples d’aréoles possibles avec ou sans ornements "
+    },
+    {
+      "image": "/images/uploads/img_5990.jpeg",
+      "categorie": "Shop aréoles",
+      "alt": "Sublimation d’une aréole sur peau synthétique avec comme support une photo "
+    },
+    {
+      "image": "/images/uploads/img_5373.jpeg",
+      "categorie": "Tatouage artistique",
+      "alt": "Tatouage artistique "
+    },
+    {
+      "image": "/images/uploads/img_5518.jpeg",
+      "alt": "Tatouage artistique ",
       "categorie": "Tatouage artistique"
     }
   ]
