@@ -455,6 +455,14 @@ footer{
 .contact-item-link:hover{color:var(--rose-deep);border-color:var(--rose-deep)}
 strong { font-weight: 700 !important; letter-spacing: 0.01em; } strong em, em strong { font-weight: 700 !important; font-style: italic !important; }
 .hero-image.has-photo::after { display: none; }
+.carousel-avis{position:relative;overflow:hidden;max-width:700px;margin:0 auto}
+.carousel-track{display:flex;transition:transform 0.6s ease;width:300%}
+.carousel-slide{width:33.333%;flex-shrink:0;padding:40px;text-align:center}
+.carousel-slide blockquote{font-style:italic;color:var(--ink-soft);font-size:1.1rem;line-height:1.8;margin:0;quotes:none}
+.carousel-slide cite{display:block;margin-top:20px;font-size:0.9rem;color:var(--rose-dust);letter-spacing:0.05em;font-style:normal}
+.carousel-dots{display:flex;justify-content:center;gap:10px;margin-top:24px}
+.carousel-dot{width:8px;height:8px;border-radius:50%;border:none;background:var(--rose-pale);cursor:pointer;padding:0;transition:background 0.3s}
+.carousel-dot.active{background:var(--rose-deep)}
 </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -589,18 +597,25 @@ strong { font-weight: 700 !important; letter-spacing: 0.01em; } strong em, em st
     <p class="section-tag">Témoignages</p>
     <h2 class="section-title">Ce qu'elles <em>disent</em>.</h2>
   </div>
-  <div class="avis-grid">
-    <div class="avis-card">
-      <p class="avis-quote">Un accompagnement d'une douceur rare. ariana prend le temps d'écouter, de comprendre. Le résultat dépasse tout ce que j'espérais.</p>
-      <p class="avis-author">Marie L.</p>
+  <div class="carousel-avis">
+    <div class="carousel-track" id="carouselTrack">
+      <div class="carousel-slide">
+        <blockquote>J'ai été super bien accompagnée tout au long du processus, avec toutes les infos nécessaires et toujours un accueil chaleureux. Je me suis sentie en confiance du début à la fin. Je suis vraiment très, très contente du résultat, ça change vraiment ma vie.</blockquote>
+        <cite>— Lola</cite>
+      </div>
+      <div class="carousel-slide">
+        <blockquote>Merci infiniment, le tatouage est dingue, un chef-d'œuvre ! Et merci pour ta douceur et ta bonne humeur. Il y a de fortes chances que je revienne.</blockquote>
+        <cite>— Briane</cite>
+      </div>
+      <div class="carousel-slide">
+        <blockquote>Trop fière de mes tatouages réalisés avec soin, merci pour ton accueil toujours rayonnant. Hâte que tu réalises les autres projets.</blockquote>
+        <cite>— Jade</cite>
+      </div>
     </div>
-    <div class="avis-card">
-      <p class="avis-quote">Après ma reconstruction, ce tatouage a été la dernière étape. Un moment très fort. Je recommande ariana les yeux fermés.</p>
-      <p class="avis-author">Sophie M.</p>
-    </div>
-    <div class="avis-card">
-      <p class="avis-quote">Une artiste autant qu'une professionnelle de santé. Elle m'a redonné confiance en mon corps. Merci, ariana.</p>
-      <p class="avis-author">Claire D.</p>
+    <div class="carousel-dots">
+      <button class="carousel-dot active" onclick="goToSlide(0)" aria-label="Avis 1"></button>
+      <button class="carousel-dot" onclick="goToSlide(1)" aria-label="Avis 2"></button>
+      <button class="carousel-dot" onclick="goToSlide(2)" aria-label="Avis 3"></button>
     </div>
   </div>
 </section>
@@ -779,6 +794,21 @@ fetch('data/presentation.json').then(function(r){return r.json();}).then(functio
     if(u3){u3.insertAdjacentHTML('afterbegin','<img src="'+d.univers_artistique+'" alt="Tatouage artistique" style="'+imgStyle+'">');}
   }
 }).catch(function(){});
+</script>
+<script>
+(function(){
+  var current=0,total=3,auto;
+  function goToSlide(n){
+    current=n;
+    document.getElementById('carouselTrack').style.transform='translateX(-'+(100/3*n)+'%)';
+    document.querySelectorAll('.carousel-dot').forEach(function(d,i){d.classList.toggle('active',i===n)});
+  }
+  window.goToSlide=goToSlide;
+  function next(){goToSlide((current+1)%total)}
+  auto=setInterval(next,4000);
+  document.querySelector('.carousel-avis').addEventListener('mouseenter',function(){clearInterval(auto)});
+  document.querySelector('.carousel-avis').addEventListener('mouseleave',function(){auto=setInterval(next,4000)});
+})();
 </script>
 </body>
 </html>
