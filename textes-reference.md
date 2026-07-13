@@ -12,7 +12,7 @@ Le **Tatouage Réparateur** **:** la création d'**une** nouvelle **aréole mamm
 
 **Présentation courte :**
 
-Bonjour, je m'appelle Caroline et grâce mon métier, je permets **à** mes client.e.s de se réapproprier leur poitrine après une épreuve médicale, comme par exemple suite à une mammectomie.
+Bonjour, je m'appelle Caroline et grâce mon métier, je permets à mes client.e.s de se réapproprier leur poitrine après une épreuve médicale, comme par exemple suite à une mammectomie.
 
 ---
 
