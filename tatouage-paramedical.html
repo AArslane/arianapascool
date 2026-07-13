@@ -46,7 +46,9 @@ body::before{
 ::-webkit-scrollbar-thumb{background:var(--rose-dust);border-radius:4px}
 
 .site-header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:flex-start;gap:24px;align-items:center;padding:24px 40px;mix-blend-mode:difference}
-.site-logo{font-family:'Caveat',cursive;font-size:22px;color:#fff;text-decoration:none}
+.site-logo{font-family:'Caveat',cursive;font-size:22px;color:#fff;text-decoration:none;margin-left:42px}
+.site-logo-img-link{position:fixed;top:23px;left:108px;z-index:101}
+.site-logo-img{display:block;height:46px;width:auto}
 .burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;width:44px;height:44px;justify-content:center}
 .burger span{display:block;width:24px;height:2px;background:#fff;transition:transform 0.3s,opacity 0.3s}
 .burger.open span:nth-child(2){opacity:0}
@@ -229,7 +231,9 @@ footer{
 .footer-brand{
   font-family:'Fraunces',serif;font-style:italic;
   font-size:2rem;margin-bottom:20px;
+  display:flex;align-items:center;gap:14px;
 }
+.footer-brand-img{height:52px;width:auto}
 .footer-tagline{
   color:rgba(250,245,240,0.6);max-width:400px;line-height:1.7;
 }
@@ -324,6 +328,7 @@ strong { font-weight: 700 !important; letter-spacing: 0.01em; } strong em, em st
   </button>
   <a href="index.html" class="site-logo">cherrylicious</a>
 </header>
+<a href="index.html" class="site-logo-img-link" aria-hidden="true" tabindex="-1"><img src="images/logo-cherrylicious.png" alt="" class="site-logo-img"></a>
 
 <div class="menu-overlay" role="dialog" aria-modal="true" aria-hidden="true">
   <nav class="menu-nav">
@@ -534,7 +539,7 @@ strong { font-weight: 700 !important; letter-spacing: 0.01em; } strong em, em st
 <footer>
   <div class="footer-grid">
     <div>
-      <p class="footer-brand">cherrylicious</p>
+      <p class="footer-brand"><img src="images/logo-cherrylicious.png" alt="" class="footer-brand-img">cherrylicious</p>
       <p class="footer-tagline">
         Tatouage paramédical et artistique. Une approche sensible de la reconstruction, par le geste et la patience.
       </p>
